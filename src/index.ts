@@ -1,6 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
-import { clerkClient, clerkMiddleware, getAuth, requireAuth } from '@clerk/express'
+import { clerkClient, clerkMiddleware, requireAuth } from '@clerk/express'
 import { join } from 'path';
 
 const app = express()
@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 // Test https://clerk.com/docs/pr/1880/references/backend/sessions/get-token#examples-with-frameworks
 // Make sure to create a JWT template with `test` as name
 // https://clerk.com/docs/backend-requests/making/jwt-templates
-app.get('/get-token', requireAuth(), async (req, res) => {
+app.get('/get-token', async (req, res) => {
   const { sessionId } = req.auth
 
   if (!sessionId) {
